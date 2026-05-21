@@ -8,6 +8,18 @@ async function startServer() {
 
   app.use(express.json());
 
+  // === CORS Middleware for API routes ===
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    if (req.method === "OPTIONS") {
+      res.sendStatus(200);
+      return;
+    }
+    next();
+  });
+
   // === API ROUTES ===
 
   // .well-known/agent-card.json
@@ -71,12 +83,63 @@ async function startServer() {
   // MCP POST
   app.post("/api/mcp", (req, res) => {
     try {
+      const body = req.body;
+      const { method, params, id } = body || {};
+
+      // MCP JSON-RPC
+      if (method === "initialize") {
+        return res.json({
+          jsonrpc: "2.0",
+          id,
+          result: {
+            protocolVersion: "2024-11-05",
+            capabilities: { tools: {} },
+            serverInfo: { name: "Base Casin MCP", version: "1.0.0" }
+          }
+        });
+      }
+
+      if (method === "tools/list") {
+        return res.json({
+          jsonrpc: "2.0",
+          id,
+          result: {
+            tools: [
+              { name: "get_race_status", description: "Get the current status of the casino races", inputSchema: { type: "object", properties: {} } },
+              { name: "start_race", description: "Start a new casino race", inputSchema: { type: "object", properties: {} } },
+              { name: "get_leaderboard", description: "Get the current leaderboard", inputSchema: { type: "object", properties: {} } },
+              { name: "optimize_speed", description: "Optimize the speed for the racing agent", inputSchema: { type: "object", properties: {} } },
+              { name: "get_track_info", description: "Get information about the current race track", inputSchema: { type: "object", properties: {} } }
+            ]
+          }
+        });
+      }
+
+      if (method === "tools/call") {
+        return res.json({
+          jsonrpc: "2.0",
+          id,
+          result: {
+            content: [{ type: "text", text: `Successfully executed ${params?.name} with parameters: ${JSON.stringify(params?.arguments || {})}` }]
+          }
+        });
+      }
+
+      if (method === "prompts/list") {
+        return res.json({ jsonrpc: "2.0", id, result: { prompts: [] } });
+      }
+
+      if (method === "resources/list") {
+        return res.json({ jsonrpc: "2.0", id, result: { resources: [] } });
+      }
+
+      // Default
       res.json({
         status: "success",
         message: "MCP command received",
         agent: "Base Casin Orchestrator",
         receivedAt: new Date().toISOString(),
-        payload: req.body
+        payload: body
       });
     } catch (error) {
       res.status(400).json({ error: "Invalid MCP request" });
