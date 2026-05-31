@@ -35,7 +35,9 @@
     "risk-management",
     "mcp-command-execution"
   ],
-  "supportedChains": ["eip155:8453"],
+  "supportedChains": [
+    "eip155:8453"
+  ],
   "active": true,
   "status": "online"
 }
