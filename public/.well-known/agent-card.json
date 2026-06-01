@@ -38,6 +38,20 @@
   "supportedChains": [
     "eip155:8453"
   ],
+  "skills": [
+    {
+      "name": "casino-management",
+      "description": "Orchestrates casino operations and player management"
+    },
+    {
+      "name": "betting-automation",
+      "description": "Automates betting strategies and execution"
+    },
+    {
+      "name": "reward-optimization",
+      "description": "Calculates and optimizes user rewards"
+    }
+  ],
   "active": true,
   "status": "online"
 }
