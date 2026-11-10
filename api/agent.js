@@ -14,6 +14,12 @@ export default function handler(req, res) {
     status: "active",
     wallet: "0x29536D0bc1004ab274c4F0F59734Ad74D4559b7B",
     platform: "Base Casin",
+    network: "Base Mainnet",
+    chainId: 8453,
+    upgrade: "Denim",
+    blockTime: "200ms",
+    flashblocks: "retired",
     version: "1.0.0"
   });
 }
+

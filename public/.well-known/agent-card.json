@@ -1,6 +1,6 @@
 {
   "name": "Base Casin Orchestrator",
-  "description": "Base Casin platformunda çalışan ERC-8004 uyumlu AI Agent. Casino game management, betting automation, reward optimization ve multi-game orchestration yapan akıllı agent.",
+  "description": "Base Casin platformunda çalışan ERC-8004 uyumlu AI Agent. Base Denim Mainnet (200ms native bloklar) üzerinde casino game management, betting automation, reward optimization ve multi-game orchestration yapan akıllı agent.",
   "version": "1.0.0",
   "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
   "image": "https://base-casin.vercel.app/logo.png",
@@ -12,13 +12,13 @@
       "name": "A2A",
       "endpoint": "https://base-casin.vercel.app/.well-known/agent-card.json",
       "version": "1.0.0",
-      "description": "Agent-to-Agent communication"
+      "description": "Agent-to-Agent communication on Base Denim Mainnet"
     },
     {
       "name": "MCP",
       "endpoint": "https://base-casin.vercel.app/api/mcp",
       "version": "1.0.0",
-      "description": "Model Context Protocol - Active command execution"
+      "description": "Model Context Protocol - Active command execution (Denim 200ms blocks)"
     },
     {
       "name": "API",
@@ -28,6 +28,9 @@
     }
   ],
   "capabilities": [
+    "base-denim-mainnet-compatible",
+    "200ms-canonical-blocks",
+    "flashblocks-migrated",
     "casino-game-management",
     "betting-automation",
     "reward-optimization",
@@ -38,6 +41,14 @@
   "supportedChains": [
     "eip155:8453"
   ],
+  "network": {
+    "name": "Base Mainnet",
+    "chainId": 8453,
+    "upgrade": "Denim",
+    "blockTimeMs": 200,
+    "flashblocksRetired": true,
+    "rpc": "https://mainnet.base.org"
+  },
   "skills": [
     {
       "name": "casino-management",
@@ -50,8 +61,13 @@
     {
       "name": "reward-optimization",
       "description": "Calculates and optimizes user rewards"
+    },
+    {
+      "name": "denim-network-orchestration",
+      "description": "Orchestrates game state and settlement across Base Denim 200ms canonical blocks"
     }
   ],
   "active": true,
   "status": "online"
 }
+

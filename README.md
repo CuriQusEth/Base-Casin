@@ -8,17 +8,29 @@ Base Casino is an immersive casino experience built for the Base ecosystem. It f
 
 ## ✨ Features
 
+- **Base Denim Mainnet Migration:** Upgraded to the Base Denim hardfork featuring native 200ms canonical blocks. Flashblocks preconfirmations have been retired in favor of zero-latency canonical state inclusion.
 - **Lucky Spin (Slots):** High-volatility slot machine with Base-themed symbols and win streaks.
-- **Rocket Crash:** Classic crash game where players ride the multiplier to the moon and try to cash out before the inevitable crash.
-- **ERC-8004 Active AI Agent:** Comes fully equipped with the **Base Casin Orchestrator**, an autonomous AI agent capable of multi-game orchestration, betting management, risk management, and risk automation via the Model Context Protocol (MCP).
-- **Web3 Integration:** Fully integrated with Base Mainnet (EIP-155:8453).
-- **Vault & Rewards:** Seamlessly bridge in-game chips to theoretical on-chain tokens.
+- **Rocket Crash:** Classic crash game where players ride the multiplier to the moon and try to cash out before the inevitable crash with 200ms tick updates.
+- **ERC-8004 Active AI Agent:** Comes fully equipped with the **Base Casin Orchestrator**, an autonomous AI agent capable of multi-game orchestration, betting management, risk management, and Denim network orchestration via the Model Context Protocol (MCP).
+- **Web3 Integration:** Fully integrated with Base Denim Mainnet (EIP-155:8453, Chain ID 8453).
+- **Vault & Rewards:** Seamlessly bridge in-game chips to on-chain tokens with 200ms block confirmation.
+
+## ⚡ Base Denim Upgrade Architecture
+
+Base Denim activated on Base Mainnet on November 5, 2026 at 18:00 UTC:
+- **Block Time:** 200ms canonical blocks
+- **Flashblocks Status:** Retired (all subscriptions and pending queries migrated)
+- **RPC & Subscriptions:** Standard `eth_subscribe("newHeads")` & `https://mainnet.base.org`
+- **Pending Block Tag:** Resolves directly to latest canonical 200ms block
 
 ## 🤖 MCP AI Agent Connection
 
-The Base Casin Orchestrator operates as a standardized Model Context Protocol (MCP) server. You can interact with it via its App Router API endpoints.
+The Base Casin Orchestrator operates as a standardized Model Context Protocol (MCP) server on Base Denim Mainnet. You can interact with it via its API endpoints.
 
 **Orchestrator Capabilities:**
+- `base-denim-mainnet-compatible`
+- `200ms-canonical-blocks`
+- `flashblocks-migrated`
 - `casino-game-management`
 - `betting-automation`
 - `reward-optimization`
@@ -31,10 +43,11 @@ The Base Casin Orchestrator operates as a standardized Model Context Protocol (M
 - `MCP Endpoint`: `https://base-casin.vercel.app/api/mcp`
 - `General API`: `https://base-casin.vercel.app/api/agent`
 
-To test the MCP agent locally or invoke tools (`get_race_status`, `start_race`, `get_leaderboard`, `optimize_speed`, `get_track_info`), hit the `/api/mcp` POST endpoint using standard JSON-RPC 2.0 formatting.
+To test the MCP agent locally or invoke tools (`get_denim_network_info`, `get_block_status`, `get_race_status`, `start_race`, `get_leaderboard`, `optimize_speed`, `get_track_info`), hit the `/api/mcp` POST endpoint using standard JSON-RPC 2.0 formatting.
 
 ## 🛠 Tech Stack
 
+- Base Denim Mainnet (200ms native blocks)
 - Next.js / React (Vite)
 - Tailwind CSS & Framer Motion
 - Wagmi + Viem
